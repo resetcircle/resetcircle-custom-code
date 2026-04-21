@@ -1,5 +1,9 @@
 #import "BuddybossCustomCode.h"
 #import <React/RCTRootView.h>
+#import <RNBuddybossCustomCodeSpec/RNBuddybossCustomCodeSpec.h>
+
+@interface BuddybossCustomCode () <NativeBuddybossCustomCodeSpec>
+@end
 
 @implementation BuddybossCustomCode
 
@@ -15,20 +19,19 @@
 + (void)rootViewVisible:(RCTRootView *)rootView
 {}
 
-// Here you can write your own custom native modules to use in your custom repo
-// Below is an example of a simple method to multiply two numbers
-// See https://reactnative.dev/docs/native-modules-ios for more information
-
 RCT_EXPORT_MODULE()
 
-// This example method can be deleted
-RCT_REMAP_METHOD(multiply,
-                 multiplyWithA:(nonnull NSNumber*)a withB:(nonnull NSNumber*)b
-                 withResolver:(RCTPromiseResolveBlock)resolve
-                 withRejecter:(RCTPromiseRejectBlock)reject)
+// ---------------------------------------------------------------------
+// Native methods exposed to JS.
+// Signatures must match the TS spec (codegen will fail the build otherwise).
+// ---------------------------------------------------------------------
+
+// Add your native methods here.
+
+- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
+    (const facebook::react::ObjCTurboModule::InitParams &)params
 {
-  NSNumber *result = @([a floatValue] * [b floatValue]);
-  resolve(result);
+    return std::make_shared<facebook::react::NativeBuddybossCustomCodeSpecJSI>(params);
 }
 
 @end
