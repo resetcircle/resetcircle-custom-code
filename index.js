@@ -1,3 +1,10 @@
-export const applyCustomCode = (externalCodeSetup: any) => {
-	// call custom code api here
+import ResetCircleLiveTestScreen from "./src/screens/ResetCircleLiveTestScreen";
+
+export const applyCustomCode = externalCodeSetup => {
+	externalCodeSetup.navigationApi.addNavigationRoute(
+		"ResetCircleLiveTest",
+		"ResetCircleLiveTest",
+		ResetCircleLiveTestScreen,
+		"Main"
+	);
 };
