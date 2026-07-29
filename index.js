@@ -7,4 +7,24 @@ export const applyCustomCode = externalCodeSetup => {
 		ResetCircleLiveTestScreen,
 		"Main"
 	);
+
+	externalCodeSetup.moreScreenApi.setTabsList(
+		(sections, _dispatch, navigation) => [
+			...sections,
+			{
+				label: "RESET CIRCLE",
+				screens: [
+					{
+						item: {
+							hasNavArrow: true,
+							label: "Reset Circle Live Test",
+							onPress: () =>
+								navigation.navigate("ResetCircleLiveTest")
+						},
+						routeName: "ResetCircleLiveTest"
+					}
+				]
+			}
+		]
+	);
 };
