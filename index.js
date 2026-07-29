@@ -1,6 +1,11 @@
+import MoreScreenDiagnostic from "./src/screens/MoreScreenDiagnostic";
 import ResetCircleLiveTestScreen from "./src/screens/ResetCircleLiveTestScreen";
 
 export const applyCustomCode = externalCodeSetup => {
+	externalCodeSetup.indexJsApi.addIndexJsFunction(() => {
+		console.log("RESET_CIRCLE_CUSTOM_CODE_LOADED");
+	});
+
 	externalCodeSetup.navigationApi.addNavigationRoute(
 		"ResetCircleLiveTest",
 		"ResetCircleLiveTest",
@@ -8,23 +13,9 @@ export const applyCustomCode = externalCodeSetup => {
 		"Main"
 	);
 
-	externalCodeSetup.moreScreenApi.setTabsList(
-		(sections, _dispatch, navigation) => [
-			...sections,
-			{
-				label: "RESET CIRCLE",
-				screens: [
-					{
-						item: {
-							hasNavArrow: true,
-							label: "Reset Circle Live Test",
-							onPress: () =>
-								navigation.navigate("ResetCircleLiveTest")
-						},
-						routeName: "ResetCircleLiveTest"
-					}
-				]
-			}
-		]
+	// TEMPORARY DIAGNOSTIC: restore the standard More screen after verification.
+	externalCodeSetup.navigationApi.replaceScreenComponent(
+		"MoreScreen",
+		MoreScreenDiagnostic
 	);
 };
