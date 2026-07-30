@@ -1,21 +1,38 @@
-import MoreScreenDiagnostic from "./src/screens/MoreScreenDiagnostic";
-import ResetCircleLiveTestScreen from "./src/screens/ResetCircleLiveTestScreen";
+import React from "react";
+import {View, Text} from "react-native";
 
 export const applyCustomCode = externalCodeSetup => {
-	externalCodeSetup.indexJsApi.addIndexJsFunction(() => {
-		console.log("RESET_CIRCLE_CUSTOM_CODE_LOADED");
-	});
-
-	externalCodeSetup.navigationApi.addNavigationRoute(
-		"ResetCircleLiveTest",
-		"ResetCircleLiveTest",
-		ResetCircleLiveTestScreen,
-		"Main"
-	);
-
-	// TEMPORARY DIAGNOSTIC: restore the standard More screen after verification.
 	externalCodeSetup.navigationApi.replaceScreenComponent(
-		"MoreScreen",
-		MoreScreenDiagnostic
+		"SignupScreen",
+		() => (
+			<View
+				style={{
+					flex: 1,
+					alignItems: "center",
+					justifyContent: "center",
+					backgroundColor: "#000000"
+				}}
+			>
+				<Text
+					style={{
+						color: "#c9b172",
+						fontSize: 26,
+						fontWeight: "700"
+					}}
+				>
+					Reset Circle Custom Code Loaded
+				</Text>
+
+				<Text
+					style={{
+						color: "#ffffff",
+						fontSize: 16,
+						marginTop: 12
+					}}
+				>
+					This is the custom signup screen.
+				</Text>
+			</View>
+		)
 	);
 };
